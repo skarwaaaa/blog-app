@@ -1,11 +1,18 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>投稿一覧</title>
-</head>
-<body>
-  <h2>これは投稿一覧頁です</h2>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block body %}
+
+  <h2>最新の投稿</h2>
+
+  {% for post in posts.all %}
+
+    <a href ="{% url 'post_detail' post.id %}">{{ post.title }}</a>
+    <br /><br />
+    {{ post.published }}
+    <br /><br />
+    <img src="{{ post.image.url }} " class="img-fluid rounded" style="max-height: 300px;" />
+    <br /><br />
+    {{ post.summary }}
+      <br /><br />
+  {% endfor %}
+  
+  {% endblock %}
